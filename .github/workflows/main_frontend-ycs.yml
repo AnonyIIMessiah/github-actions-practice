@@ -33,8 +33,8 @@ jobs:
         with:
           context: .
           push: true
-          tags: docker.io/${{ secrets.AZUREAPPSERVICE_CONTAINERUSERNAME_CA97E701C34A4EE6AA05ABEFABE7D93A }}/actions-frontend:${{ github.sha }}
-          file: ./Dockerfile
+          tags: demoniiexe/actions-frontend:${{ github.sha }}
+          # file: ./Dockerfile
 
   deploy:
     runs-on: ubuntu-latest
