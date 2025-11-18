@@ -12,8 +12,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read #This is required for actions/checkout
+    # permissions:
+    #   contents: read #This is required for actions/checkout
 
     steps:
       - uses: actions/checkout@v4
@@ -29,7 +29,7 @@ jobs:
           password: ${{ secrets.AZUREAPPSERVICE_CONTAINERPASSWORD_50CFB88ED654497DBE051C3C6693AC35 }}
 
       - name: Build and push container image to registry
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v4
         with:
           context: .
           push: true
