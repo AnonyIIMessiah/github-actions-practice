@@ -1,3 +1,4 @@
+name: Build and Push Docker Container
 on: push
 jobs:
   build-container:
@@ -11,4 +12,10 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Build and Push Docker image
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          push: true
+          tags: demoniiexe/actions-frontend:latest
       
