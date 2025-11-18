@@ -24,8 +24,8 @@ jobs:
           registry: docker.io/
           username: ${{ secrets.AZUREAPPSERVICE_CONTAINERUSERNAME_CA97E701C34A4EE6AA05ABEFABE7D93A }}
           password: ${{ secrets.AZUREAPPSERVICE_CONTAINERPASSWORD_50CFB88ED654497DBE051C3C6693AC35 }}
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
+      # - name: Set up Docker Buildx
+      #   uses: docker/setup-buildx-action@v2
 
 
       - name: Build and push container image to registry
