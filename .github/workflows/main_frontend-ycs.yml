@@ -12,11 +12,12 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    # permissions:
-    #   contents: read #This is required for actions/checkout
+    permissions:
+      contents: read #This is required for actions/checkout
 
     steps:
       - uses: actions/checkout@v4
+
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
 
@@ -27,13 +28,12 @@ jobs:
           username: ${{ secrets.AZUREAPPSERVICE_CONTAINERUSERNAME_CA97E701C34A4EE6AA05ABEFABE7D93A }}
           password: ${{ secrets.AZUREAPPSERVICE_CONTAINERPASSWORD_50CFB88ED654497DBE051C3C6693AC35 }}
 
-
       - name: Build and push container image to registry
-        uses: docker/build-push-action@v4
+        uses: docker/build-push-action@v3
         with:
           context: .
           push: true
-          tags: ${{ secrets.AZUREAPPSERVICE_CONTAINERUSERNAME_CA97E701C34A4EE6AA05ABEFABE7D93A }}/actions-frontend:${{ github.sha }}
+          tags: docker.io/${{ secrets.AZUREAPPSERVICE_CONTAINERUSERNAME_CA97E701C34A4EE6AA05ABEFABE7D93A }}/actions-frontend:${{ github.sha }}
           file: ./Dockerfile
 
   deploy:
