@@ -40,18 +40,19 @@ jobs:
     
     steps:
       
-      - name: Login to Azure
-        uses: azure/login@v2
+      - name: Deploy to Azure
+        uses: azure/webapps-deploy@v3
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_8647D72BF62E4E66A09F3D98256F0739 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_2D9D4713E5A846AFAF9417AEE22D829D }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_F1926933765F4428A2AC8DDCCFFB76E9 }}
-
-      - name: Deploy to Azure Web App
-        id: deploy-to-webapp
-        uses: azure/webapps-deploy@v2
-        with:
-          app-name: 'yc-frontend-test'
-          slot-name: 'Production'
-          images: 'index.docker.io/${{ secrets.AZUREAPPSERVICE_CONTAINERUSERNAME_BD053F840E9A4CD08629DCCF4BCD7DD7 }}/actions-frontend:${{ github.sha }}'
+          app-name: "yc-frontend-test"  # e.g., yc-mastery-web-2025
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+          # package: ./dist  # Or ./build – path to your built static files
+          # If deploying the Docker image instead:
+          images: demoniiexe/actions-frontend:${{ github.sha }}  # Uncomment if using ACR
+      # - name: Deploy to Azure Web App
+      #   id: deploy-to-webapp
+      #   uses: azure/webapps-deploy@v2
+      #   with:
+      #     app-name: 'yc-frontend-test'
+      #     slot-name: 'Production'
+      #     images: 'index.docker.io/${{ secrets.AZUREAPPSERVICE_CONTAINERUSERNAME_BD053F840E9A4CD08629DCCF4BCD7DD7 }}/actions-frontend:${{ github.sha }}'
           
