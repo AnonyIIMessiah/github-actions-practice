@@ -53,4 +53,4 @@ jobs:
         with: 
           app-name: "yc-frontend-test"
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE_2 }}
-          images: demoniiexe/actions-frontend:${{ github.sha }}  # Uncomment if using ACR
+          # images: demoniiexe/actions-frontend:${{ github.sha }}  # Uncomment if using ACR
